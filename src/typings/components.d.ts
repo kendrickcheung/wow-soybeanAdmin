@@ -7,9 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./../components/common/HelloWorld.vue')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
-    NaveProvider: typeof import('../components/common/NaiveProvider.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
@@ -17,5 +15,6 @@ declare module '@vue/runtime-core' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./../components/custom/SvgIcon.vue')['default']
   }
 }
