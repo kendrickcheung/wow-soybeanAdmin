@@ -1,0 +1,34 @@
+{
+  "name": "hello",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.3",
+    "naive-ui": "^2.31.0",
+    "swiper": "^8.3.1",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.0",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "mockjs": "^1.1.0",
+    "rollup-plugin-visualizer": "^5.7.0",
+    "typescript": "^4.6.4",
+    "unocss": "^0.44.2",
+    "unplugin-icons": "^0.14.7",
+    "unplugin-vue-components": "^0.21.1",
+    "unplugin-vue-define-options": "^0.6.2",
+    "vite": "^3.0.0",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-tsc": "^0.38.4"
+  }
+}
