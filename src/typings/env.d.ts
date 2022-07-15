@@ -15,6 +15,7 @@
  }
  
  interface ImportMetaEnv {
+   [x: string]: any;
    /** 项目基本地址 */
    readonly VITE_BASE_URL: string;
    /** 项目名称 */
