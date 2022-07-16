@@ -3,7 +3,7 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 import { transformAuthRoutesToVueRoutes, transformRouteNameToRoutePath } from '@/utils';
 import { constantRoutes } from './routes';
 // import { scrollBehavior } from './helpers';
-// import { createRouterGuard } from './guard';
+import { createRouterGuard } from './guard';
 
 const { VITE_HASH_ROUTE = '0', VITE_BASE_URL } = import.meta.env;
 
@@ -16,7 +16,7 @@ export const router = createRouter({
 /** setup vue router. - [安装vue路由] */
 export async function setupRouter(app: App) {
   app.use(router);
-  // createRouterGuard(router);
+  createRouterGuard(router);
   await router.isReady();
 }
 

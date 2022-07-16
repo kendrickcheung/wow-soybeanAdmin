@@ -3,6 +3,7 @@ import App from "./App.vue";
 
 import { setupAssets } from "./plugins";
 import { setupStore } from "./store";
+import { setupRouter } from './router';
 
 async function setupApp() {
 	// import assets: js、css
@@ -11,6 +12,9 @@ async function setupApp() {
 	const app = createApp(App);
 	// store plugin: pinia
 	setupStore(app);
+
+	// vue router
+  await setupRouter(app);
 
 	// mount app
 	app.mount("#app");
