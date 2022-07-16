@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "dev": "cross-env VITE_ENV_TYPE=dev vite",
+    "build": "npm run typecheck && cross-env VITE_ENV_TYPE=prod vite build",
+    "typecheck": "vue-tsc --noEmit --skipLibCheck",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.4.2",
     "@soybeanjs/vue-admin-layout": "^1.1.1",
     "@soybeanjs/vue-admin-tab": "^1.0.5",
     "@vueuse/core": "^8.9.3",
@@ -37,6 +39,7 @@
     "@types/ua-parser-js": "^0.7.36",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "cross-env": "^7.0.3",
     "mockjs": "^1.1.0",
     "patch-package": "^6.4.7",
     "rollup-plugin-visualizer": "^5.7.0",
