@@ -41,7 +41,7 @@ import type { FormInst, FormRules } from 'naive-ui';
 import { EnumLoginModule } from '@/enum';
 import { useAuthStore } from '@/store';
 import { useRouterPush } from '@/composables';
-import { formRules } from '@/utils';
+import { rsaEncrypt } from '@/utils';
 import { OtherAccount } from './components';
 
 const auth = useAuthStore();
@@ -50,11 +50,11 @@ const { toLoginModule } = useRouterPush();
 
 const formRef = ref<(HTMLElement & FormInst) | null>(null);
 const model = reactive({
-  userName: 'Soybean',
-  password: 'soybean123'
+  userName: 'admin',
+  password: '123456'
 });
 const rules: FormRules = {
-  password: formRules.pwd
+  // password: formRules.pwd
 };
 const rememberMe = ref(false);
 
@@ -65,14 +65,14 @@ function handleSubmit(e: MouseEvent) {
   formRef.value.validate(errors => {
     if (!errors) {
       const { userName, password } = model;
-      login(userName, password);
+      login(userName, rsaEncrypt(password));
     }
   });
 }
 
 function handleLoginOtherAccount(param: { userName: string; password: string }) {
-  const { userName, password } = param;
-  login(userName, password);
+  // const { userName, password } = param;
+  // login(userName, password);
 }
 </script>
 

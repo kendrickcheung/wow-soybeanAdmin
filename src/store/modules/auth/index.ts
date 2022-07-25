@@ -3,13 +3,14 @@ import { defineStore } from 'pinia';
 import { router } from '@/router';
 import { useRouterPush } from '@/composables';
 import { fetchLogin, fetchUserInfo } from '@/service';
-import { getUserInfo, getToken, setUserInfo, setToken, setRefreshToken, clearAuthStorage } from '@/utils';
+import { getUserInfo, getToken, setUserInfo, setToken, setRefreshToken, clearAuthStorage, setElUserInfo, getElUserInfo } from '@/utils';
 import { useTabStore } from '../tab';
 import { useRouteStore } from '../route';
 
 interface AuthState {
   /** 用户信息 */
   userInfo: Auth.UserInfo;
+  elUserInfo: Auth.ElAdminUserInfo;
   /** 用户token */
   token: string;
   /** 登录的加载状态 */
@@ -19,6 +20,7 @@ interface AuthState {
 export const useAuthStore = defineStore('auth-store', {
   state: (): AuthState => ({
     userInfo: getUserInfo(),
+    elUserInfo: getElUserInfo(),
     token: getToken(),
     loginLoading: false
   }),
@@ -62,7 +64,7 @@ export const useAuthStore = defineStore('auth-store', {
         // 登录成功弹出欢迎提示
         window.$notification?.success({
           title: '登录成功!',
-          content: `欢迎回来，${this.userInfo.userName}!`,
+          content: `欢迎回来，${this.elUserInfo.user.nickName}!`,
           duration: 3000
         });
 
@@ -82,16 +84,23 @@ export const useAuthStore = defineStore('auth-store', {
       // 先把token存储到缓存中(后面接口的请求头需要token)
       const { token, refreshToken } = backendToken;
       setToken(token);
-      setRefreshToken(refreshToken);
-
+      setRefreshToken(refreshToken);      
       // 获取用户信息
       const { data } = await fetchUserInfo();
+
+      const userInfo: Auth.UserInfo = {
+        userId: '0',
+        userName: 'admin',
+        userRole: 'admin'
+      };
+      
       if (data) {
         // 成功后把用户信息存储到缓存中
-        setUserInfo(data);
+        setUserInfo(userInfo);
+        setElUserInfo(data)
 
         // 更新状态
-        this.userInfo = data;
+        this.userInfo = userInfo;
         this.token = token;
 
         successFlag = true;
@@ -120,17 +129,9 @@ export const useAuthStore = defineStore('auth-store', {
       const { resetRouteStore, initAuthRoute } = useRouteStore();
 
       const accounts: Record<Auth.RoleType, { userName: string; password: string }> = {
-        super: {
-          userName: 'Super',
-          password: 'super123'
-        },
         admin: {
-          userName: 'Admin',
-          password: 'admin123'
-        },
-        user: {
-          userName: 'User01',
-          password: 'user01123'
+          userName: 'admin',
+          password: '123456'
         }
       };
       const { userName, password } = accounts[userRole];

@@ -36,9 +36,45 @@ export function getUserInfo() {
   const emptyInfo: Auth.UserInfo = {
     userId: '',
     userName: '',
-    userRole: 'user'
+    userRole: 'admin'
   };
   const userInfo: Auth.UserInfo = getLocal<Auth.UserInfo>(EnumStorageKey['user-info']) || emptyInfo;
+  return userInfo;
+}
+
+export function getElUserInfo() {
+  const emptyInfo: Auth.ElAdminUserInfo = {
+    authorities: [],
+    dataScopes: [],
+    roles: "admin",
+    user: {
+      avatarName: '',
+      avatarPath: '',
+      createTime: '',
+      dept: {
+        id: 0,
+        name: ''
+      },
+      email: '',
+      enabled: false,
+      gender: '男',
+      id: 0,
+      isAdmin: true,
+      jobs: {
+        id: 0,
+        name: "开发"
+      },
+      nickName: "",
+      password: "",
+      phone: "",
+      pwdResetTime: "",
+      roles:[],
+      updateBy: "",
+      updateTime: "",
+      username: ""
+    }
+  }
+  const userInfo: Auth.ElAdminUserInfo = getLocal<Auth.ElAdminUserInfo>(EnumStorageKey['el-user-info']) || emptyInfo;
   return userInfo;
 }
 
@@ -46,10 +82,16 @@ export function getUserInfo() {
 export function setUserInfo(userInfo: Auth.UserInfo) {
   setLocal(EnumStorageKey['user-info'], userInfo);
 }
+export function setElUserInfo(userInfo: Auth.ElAdminUserInfo){
+  setLocal(EnumStorageKey['el-user-info'],userInfo);
+}
 
 /** 去除用户信息 */
 export function removeUserInfo() {
   removeLocal(EnumStorageKey['user-info']);
+}
+export function removeElUserInfo() {
+  removeLocal(EnumStorageKey['el-user-info']);
 }
 
 /** 去除用户相关缓存 */

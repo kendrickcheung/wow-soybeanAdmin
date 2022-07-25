@@ -2,8 +2,7 @@
 declare namespace Auth {
 	/**
 	 * 用户角色类型(前端静态路由用角色类型进行路由权限的控制)
-	 * - super: 超级管理员(该权限具有所有路由数据)
-	 * - admin: 管理员
+	 * - admin: 超级管理员(该权限具有所有路由数据)
 	 * - user: 用户
 	 * - custom: 自定义角色
 	 */
@@ -17,6 +16,52 @@ declare namespace Auth {
 		userName: string;
 		/** 用户角色类型 */
 		userRole: RoleType;
+	}
+
+	/** 用户信息 */
+	interface ElAdminUserInfo {
+		authorities: authorities[];
+		dataScopes: string[];
+		roles: RoleType;
+		user: user;
+	}
+
+	interface authorities {
+		authority: string;
+	}
+	interface user {
+		avatarName: string;
+		avatarPath: string;
+		createTime: string;
+		dept: dept;
+		email: string;
+		enabled: boolean;
+		gender: string;
+		id: number;
+		isAdmin: boolean;
+		jobs: jobs;
+		nickName: string;
+		password: string;
+		phone: string;
+		pwdResetTime: string;
+		roles: roles[];
+		updateBy: string;
+		updateTime: string;
+		username: string
+	}
+	interface dept {
+		id: number;
+		name: string;
+	}
+	interface jobs {
+		id: number;
+		name: string;
+	}
+	interface roles {
+		dataScope: string;
+		id: number;
+		level: number;
+		name: string;
 	}
 }
 

@@ -70,10 +70,11 @@ const apis: MockMethod[] = [
         };
       }
       const userInfo: Auth.UserInfo = {
-        userId: '',
-        userName: '',
-        userRole: 'user'
+        userId: '0',
+        userName: 'Soybean',
+        userRole: 'admin'
       };
+
       const isInUser = userModel.some(item => {
         const flag = item.token === authorization;
         if (flag) {

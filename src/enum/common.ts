@@ -18,7 +18,8 @@ export enum EnumContentType {
     /** 主题配置 */
     'theme-settings' = '__THEME_SETTINGS__',
     /** 多页签路由信息 */
-    'multi-tab-routes' = '__MULTI_TAB_ROUTES__'
+    'multi-tab-routes' = '__MULTI_TAB_ROUTES__',
+    'el-user-info' = 'EL__USER-INFO__'
   }
   
   /** 数据类型 */

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <canvas ref="domRef" width="152" height="40" class="cursor-pointer" @click="getImgCode"></canvas>
   </div>
@@ -39,4 +39,4 @@ watch(imgCode, newValue => {
 defineExpose({ getImgCode });
 </script>
 
-<style scoped></style>
+<style scoped></style> -->
